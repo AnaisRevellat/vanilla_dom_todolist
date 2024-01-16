@@ -11,7 +11,8 @@ function inputLength() {
 
 function createListElement() {
   var li = document.createElement("li");
-  var deleteBtn = document.createElement("button");
+  var deleteBtn = document.createElement("button");  
+  deleteBtn.classList.add("delete-row"); 
 
   var span = document.createElement("span");
   span.className = "triangle";
@@ -69,7 +70,8 @@ function deleteItem(li) {
 /*loop to add a .done toggle class to existing items*/
 for(let i = 0; i < existingLiItems.length; i++){
     //button creation
-    var deleteBtn = createDeleteBtn();    
+    var deleteBtn = createDeleteBtn();  
+    deleteBtn.classList.add("delete-row");  
     var deleteAllowAction = existingLiItems[i].append(deleteBtn);
 
     //on click the toggleDoneClass is on or off
