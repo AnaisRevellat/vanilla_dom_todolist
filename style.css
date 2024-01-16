@@ -22,7 +22,8 @@ body {
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 500px;
+  width: 40%;
+  max-width: 500px;
   height: 800px;
   border-radius: 50px;
   background: #ddf3f3;
@@ -60,6 +61,9 @@ body {
   height: 250px;
   background: rgb(222, 240, 240);
   box-shadow: 10px 10px 20px #c0c0c0, -10px -10px 20px #ffffff;
+  width: 90%; /* responsiveness */
+  max-width: 250px;
+  height: auto;
 }
 
 .neunmorphism-box img {
@@ -121,7 +125,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -161,7 +165,6 @@ body {
   border-left: 10px solid black;
 }
 
-
 .triangle:hover {
   display: flex;
   width: 0;
@@ -194,4 +197,41 @@ body {
     inset -5px 0px 1px rgba(0, 0, 0, 0.2);
   top: 5px;
   left: 1px;
+}
+
+@media (max-width: 1023px) {
+  .main-box {
+    width: 80%;
+  }
+
+  #first {
+    display: none;
+  }
+
+  .input-box {
+    margin-top: 2rem;
+  }
+
+  #userinput {
+    width: 15em;
+  }
+
+  .neunmorphism-box {
+    width: 70%; /* responsiveness */
+  }
+}
+
+@media (max-width: 620px) {
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;  
+}
+
+
 }
