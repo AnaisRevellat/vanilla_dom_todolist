@@ -8,17 +8,34 @@ function inputLength() {
   return input.value.length;
 }
 
+
 function createListElement() {
   var li = document.createElement("li");
   var deleteBtn = document.createElement("button");
 
-  li.appendChild(document.createTextNode(input.value));
-  ul.append(li);
+  var span = document.createElement("span");
+  span.className = "triangle";
+
+  var paragraph = document.createElement("p");
+  paragraph.textContent = input.value;
+
+  li.appendChild(span);
+  li.appendChild(paragraph);
+  ul.appendChild(li);
+
   input.value = "";
-  li.addEventListener("click", toggleDoneClass); 
+  li.addEventListener("click", toggleDoneClass);
+
   deleteBtn.appendChild(document.createTextNode("X"));
-  li.append(deleteBtn);
+  li.appendChild(deleteBtn);
+
+  // add an event to delete a row
+  deleteBtn.addEventListener("click", function (event) {
+    event.stopPropagation();
+    deleteItem(li);
+  });
 }
+
 
 function toggleDoneClass() {
   this.classList.toggle("done");
@@ -32,32 +49,40 @@ function addElementAfterClick() {
 }
 
 function addElementAfterKeyPress(event) {
-  if (inputLength() > 0 && event.key === "Enter") {
+  if (inputLength() > 0 && event.key === "Enter" && event.target === input) {
     createListElement();
   }
 }
 
-// function deleteItem () {
-
-// }
 
 function createDeleteBtn () {
-    
+    var deleteBtn = document.createElement("button");  
+    deleteBtn.appendChild(document.createTextNode("X"));
+    return deleteBtn;    
 }
+
+function deleteItem(li) {
+    ul.removeChild(li);   
+}
+
 
 /*loop to add a .done toggle class to existing items*/
 for(let i = 0; i < existingLiItems.length; i++){
-    var deleteBtn = document.createElement("button");  
-    deleteBtn.appendChild(document.createTextNode("X"));
-    existingLiItems[i].append(deleteBtn);
+    //button creation
+    var deleteBtn = createDeleteBtn();    
+    var deleteAllowAction = existingLiItems[i].append(deleteBtn);
 
-
+    //on click the toggleDoneClass is on or off
     existingLiItems[i].addEventListener("click", toggleDoneClass);
     console.log(existingLiItems[i]);
 
+    //delete a li row
+    deleteBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        deleteItem(existingLiItems[i]);
+    });
+   
 }
-
-// deleteBtn.addEventListener("click", deleteItem);
 
 button.addEventListener("click", addElementAfterClick);
 
